@@ -11,3 +11,7 @@
     - missing tasks
         1. create database in pgadmin
 
+    
+    make migration: python manage.py makemigrations
+    run migration: python manage.py migrate 
+
