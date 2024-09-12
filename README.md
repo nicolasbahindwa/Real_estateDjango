@@ -15,3 +15,4 @@
     make migration: python manage.py makemigrations
     run migration: python manage.py migrate 
 
+    to create a superuser: python manage.py createsuperuser
