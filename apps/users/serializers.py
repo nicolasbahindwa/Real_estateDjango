@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django_countries.serializer_fields import CountryField
 from djoser.serializers import UserCreateSerializer
-from phonenumber_field.serializerfields import PhonenumberField
+from phonenumber_field.serializerfields import PhoneNumberField
 from rest_framework import serializers
 
 
@@ -9,7 +9,7 @@ User = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
     gender = serializers.CharField(source='profile.gender')
-    phone_number = PhonenumberField(source='profile.phone_number')
+    phone_number = PhoneNumberField(source='profile.phone_number')
     profile_photo = serializers.CharField(source='profile.profile_photo')
     city = serializers.CharField(source='profile.city')
     country=serializers.CharField(source='profile.country')

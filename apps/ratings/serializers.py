@@ -8,6 +8,7 @@ class RatingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model= Rating
+        # fields = ['id', 'rater', 'agent', 'rating', 'comment', 'created_at', 'updated_at']
         exclude=['update_at', 'pkid']
 
     

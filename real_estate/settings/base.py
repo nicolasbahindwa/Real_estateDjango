@@ -50,7 +50,9 @@ LOCAL_APPS = [
     "apps.common",
     "apps.users",
     "apps.profiles",
-    "apps.ratings"
+    "apps.ratings",
+    "apps.properties",
+    "apps.enquiries",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THID_PARTY_APPS + LOCAL_APPS
@@ -178,15 +180,17 @@ DJOSER = {
         "current_user": "apps.users.serializers.UserSerializer",
         "user_delete": "djoser.serializers.UserDeleteSerializer"
     },
-    "EMAIL": {
-    "activation": "users.email.ActivationEmail",
-    "confirmation": "users.email.ConfirmationEmail",
-    "password_reset": "users.email.PasswordResetEmail",
-    "password_changed_confirmation": "users.email.PasswordChangedConfirmationEmail",
-    "username_changed_confirmation": "users.email.UsernameChangedConfirmationEmail",
-    "username_reset": "users.email.UsernameResetEmail",
-    },
+    # "EMAIL": {
+    #     "activation": "users.email.ActivationEmail",
+    #     "confirmation": "users.email.ConfirmationEmail",
+    #     "password_reset": "users.email.PasswordResetEmail",
+    #     "password_changed_confirmation": "users.email.PasswordChangedConfirmationEmail",
+    #     "username_changed_confirmation": "users.email.UsernameChangedConfirmationEmail",
+    #     "username_reset": "users.email.UsernameResetEmail",
+    # },
 }
+
+SITE_ID = 1
 
 # SITE LOGGING CONFIG
 
