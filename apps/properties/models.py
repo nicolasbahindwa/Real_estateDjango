@@ -21,7 +21,7 @@ class PropertyPublishedManager(models.Manager):
 
 class Property(TimeStampedUUIDModel):
     class AdvertType(models.TextChoices):
-        FOR_SALE="For Sale", _("For Sake")
+        FOR_SALE="For Sale", _("For Sale")
         FOR_RENT="For Rent",_("For Rent")
         FOR_LEASE="For Lease",_("For Lease")
         AUCTION="Auction", _("Auction")
@@ -41,14 +41,14 @@ class Property(TimeStampedUUIDModel):
     user = models.ForeignKey(User, 
                              verbose_name=_("Agent, Seller, Seller or buyer"),
                              related_name="agent_buyer",
-                             on_delete=models.DO_NOTHING),
+                             on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=255, 
-                             verbose_name=_("Property Title")),
+                             verbose_name=_("Property Title"))
     slug = AutoSlugField(populate_from="title",
                           unique=True, 
-                          always_update=True),
+                          always_update=True)
     ref_code = models.CharField(verbose_name=_("Reference Code"),
-                                max_length=255, unique=True),
+                                max_length=255, unique=True)
 
     # advert_type = models.CharField(max_length=20, choices=AdvertType.choices, default=AdvertType.FOR_SALE)
     description = models.TextField(verbose_name=_("Description"), default="Default description")
@@ -61,7 +61,7 @@ class Property(TimeStampedUUIDModel):
     property_number = models.IntegerField(
         verbose_name=_("Property Number"),
         validators=[MinValueValidator(1)],
-        default=112,
+        default=120,
     )
     price = models.DecimalField(
         verbose_name=_("Price"), max_digits=8, decimal_places=2, default=0.0
@@ -139,7 +139,7 @@ class Property(TimeStampedUUIDModel):
 
     def save(self, *args, **kwargs):
         self.title = str.title(self.title)
-        self.description = str.description(self.description)
+        self.description = str.capitalize(self.description)
         self.ref_code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
         super(Property, self).save(*args, **kwargs)
 

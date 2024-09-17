@@ -17,6 +17,7 @@ from .serializers import (PropertyCreateSerializer, PropertySerializer,
 logger = logging.getLogger(__name__)
 
 
+# lookup expressions for filtering
 class PropertyFilter(django_filters.FilterSet):
 
     advert_type = django_filters.CharFilter(
