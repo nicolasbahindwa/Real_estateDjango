@@ -12,6 +12,7 @@ services:
     #   - "8000:8000"
     depends_on:
       - postgres-db
+      - redis
     env_file:
       - .env
     networks:
@@ -33,6 +34,30 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+  redis: 
+    image: redis:5-alpine
+    networks:
+      - estate-react
+  celery:
+    build:
+      context: .
+      dockerfile: ./docker/local/django/dockerfile
+    command: /start-celeryworker
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - postgres-db
+    networks:
+      - estate-react
+  
+  flower:
+    build:
+      context:  .
+      dockerfile: ./docker/local/django/dockerfile
+  
   nginx:
     restart: always
     depends_on:
