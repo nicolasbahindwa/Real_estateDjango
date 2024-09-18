@@ -1,6 +1,10 @@
 import environ
 from pathlib import Path
-import os
+import logging
+import logging.config
+
+from django.utils.log import DEFAULT_LOGGING
+from datetime import timedelta
 
  
 
@@ -145,7 +149,7 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     )
 }
-from datetime import timedelta
+
 
 SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": (
@@ -195,10 +199,7 @@ SITE_ID = 1
 
 # SITE LOGGING CONFIG
 
-import logging
-import logging.config
 
-from django.utils.log import DEFAULT_LOGGING
 
 logger = logging.getLogger(__name__)
 
