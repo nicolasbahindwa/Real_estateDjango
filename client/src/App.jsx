@@ -3,11 +3,10 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/Footer";
-
+import Header from "./components/Header";
 import NotFound from "./components/NotFound";
 import ActivatePage from "./pages/ActivatePage";
 import HomePage from "./pages/HomePage";
-import Header from "./components/Header";
 import LoginPage from "./pages/LoginPage";
 import PropertiesPage from "./pages/PropertiesPage";
 import RegisterPage from "./pages/RegisterPage";
