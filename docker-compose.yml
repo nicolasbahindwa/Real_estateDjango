@@ -34,10 +34,23 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+  client:
+    build:
+      image: ./client
+      dockerfile: ./docker/local/client/Dockerfile
+    restart: on-failure
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    networks:
+    - estate-react
+
   redis: 
     image: redis:5-alpine
     networks:
       - estate-react
+
   celery:
     build:
       context: .
@@ -57,6 +70,18 @@ services:
     build:
       context:  .
       dockerfile: ./docker/local/django/dockerfile
+    command: /start-flower
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - postgres-db
+    networks:
+    - estate-react
+    ports:
+      - "5557:5555"
   
   nginx:
     restart: always
@@ -72,7 +97,6 @@ services:
       - "8080:80"
     networks:
       - estate-react
-  
 
 networks:
   estate-react:
